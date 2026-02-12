@@ -35,7 +35,7 @@
 ## 🖼️ Framework Overview
 
 <div align="center">
-  <img src="tease.pdf" alt="OmniVL-Guard Overview" width="100%">
+  <img src="tease.png" alt="OmniVL-Guard Overview" width="100%">
   <br>
   <em>Figure 1: The unified vision-language forgery detection and grounding framework (OmniVL-Guard). The right side illustrates how ARSPO achieves balanced optimization compared to standard SFT.</em>
 </div>
@@ -55,7 +55,7 @@
     To address the imbalance where simple classification tasks dominate gradients, ARSPO dynamically modulates reward scales and task weights. It uses a **Task-Based Reward Mapping Function** (non-linear rewards for hard tasks) and **Dynamic Coefficient Adjustment** to ensure fine-grained localization tasks are learned effectively.
 
 <div align="center">
-  <img src="assets/figure2_pipeline.png" alt="CoT Generation Pipeline" width="100%">
+  <img src="dataset.png" alt="CoT Generation Pipeline" width="100%">
   <br>
   <em>Figure 2: The Self-Evolving Forensic CoT Generation pipeline and statistics for the resulting FSFR dataset.</em>
 </div>
