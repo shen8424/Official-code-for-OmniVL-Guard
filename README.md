@@ -25,7 +25,7 @@
 **OmniVL-Guard** is a unified framework designed to bridge this gap. It is the first framework capable of simultaneously handling forgery detection and grounding across dominant social media modalities (Image, Text, Video) within a single paradigm.
 
 ### 🌟 Key Features
-* **Unified Multi-Modal Defense:** Handles Text, Image, Video, and Image-Text forgeries simultaneously.
+* **Unified Multi-Modal Defense:** Handles Text, Image, Video forgeries simultaneously.
 * **Balanced Reinforcement Learning:** Introduces **ARSPO** (Adaptive Reward Scaling Policy Optimization) to solve the "difficulty bias" in multi-task learning.
 * **Reasoning-Driven:** Leverages **Self-Evolving CoT (Chain-of-Thought)** generation to synthesize high-quality reasoning paths, overcoming the cold-start challenge.
 * **State-of-the-Art Performance:** Demonstrates superior performance on in-domain tests and robust zero-shot generalization on out-of-domain benchmarks.
