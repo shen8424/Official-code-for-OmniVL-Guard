@@ -6,6 +6,8 @@
 <a href="#"><img src="https://img.shields.io/badge/Conference-ICML%202026-4b8bbe.svg" alt="ICML 2026"></a>
 <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
 <a href="#"><img src="https://img.shields.io/badge/Status-Accepted-brightgreen.svg" alt="Status"></a>
+<a href="https://huggingface.co/datasets/SJJ0854/FSFR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-FSFR-ff9900.svg" alt="HF Dataset"></a>
+<a href="https://huggingface.co/SJJ0854/OmniVL-Guard-2B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-OmniVL--Guard--2B-ff9900.svg" alt="HF Model"></a>
 
 </div>
 
@@ -15,22 +17,12 @@
 
 - [x] **[2026.04.30]** OmniVL-Guard has been accepted to **ICML 2026**!
 - [ ] Release **OmniVL-Guard-8B**, our flagship unified vision-language forensic model.
-- [ ] Release **FSFR (Full-Spectrum Forensic Reasoning)**, a large-scale multimodal forensic reasoning dataset.
-- [ ] Open-source the complete **OmniVL-Guard code base**, including the full training pipeline from scratch.
-- [ ] Release **OmniVL-Guard-2B**, a lightweight and efficient version for broader deployment.
-- [ ] Provide fine-tuning recipes and checkpoints for adapting **OmniVL-Guard-8B / OmniVL-Guard-2B** to additional forensic datasets.
+- [x] **[2026.05.08]** Release **OmniVL-Guard-2B**, a lightweight and efficient version for broader deployment.
+- [x] **[2026.05.08]** Release **FSFR (Full-Spectrum Forensic Reasoning)**, a large-scale multimodal forensic reasoning dataset.
+- [x] **[2026.05.08]** Open-source the complete **OmniVL-Guard code base**, including the full training pipeline from scratch.
+- [x] **[2026.05.08]** Provide fine-tuning recipes and checkpoints for adapting **OmniVL-Guard-8B / OmniVL-Guard-3B** to additional forensic datasets.
 
 Please **Star** ⭐ this repository to stay updated!
-
----
-
-## 🏆 Status: Accepted by ICML 2026
-
-> **OmniVL-Guard** has been accepted by **ICML 2026**.
->
-> The source code, model checkpoints, training pipeline, and the **FSFR (Full-Spectrum Forensic Reasoning)** dataset are currently being prepared for public release.
->
-> We are committed to making this project fully reproducible and easy to extend for future research in multimodal forgery detection and grounding.
 
 ---
 
@@ -48,128 +40,39 @@ It is the first framework capable of simultaneously handling forgery detection a
 - **Fine-Grained Grounding:** Supports spatial localization for images, semantic localization for text, and temporal localization for videos.
 - **State-of-the-Art Performance:** Achieves strong in-domain performance and robust zero-shot generalization on out-of-domain benchmarks.
 
----
-
-## 🖼️ Framework Overview
-
-<div align="center">
-  <img src="./figures/tease.png" alt="OmniVL-Guard Overview" width="100%">
-  <br>
-  <em>Figure 1: The unified vision-language forgery detection and grounding framework, OmniVL-Guard. The right side illustrates how ARSPO achieves balanced optimization compared to standard SFT.</em>
-</div>
-
-<br>
+> For more details about the framework, dataset, and performance, please refer to [Introduction](./Introduction/README.md).
 
 ---
 
-## 🧠 Core Components
-
-### 1. Self-Evolving CoT Generation
-
-We propose a four-stage pipeline to generate high-quality forensic reasoning data:
-
-1. **Source Data Collection** from diverse public datasets.
-2. **Forensic Reasoning Seed Priming** using state-of-the-art MLLMs.
-3. **Seed Bootstrapping** through self-evolution.
-4. **Collaborative Hard-CoT Synthesis** for long-tail and difficult samples.
-
-This pipeline enables OmniVL-Guard to learn not only whether content is forged, but also why and where the forgery occurs.
-
-### 2. ARSPO: Adaptive Reward Scaling Policy Optimization
-
-To address the imbalance where simple classification tasks can dominate gradients, we introduce **ARSPO**.
-
-ARSPO dynamically modulates reward scales and task weights through:
-
-- **Task-Based Reward Mapping Function:** Applies adaptive and non-linear rewards for harder grounding tasks.
-- **Dynamic Coefficient Adjustment:** Balances optimization across classification and localization objectives.
-- **Difficulty-Aware Learning:** Ensures that fine-grained localization tasks are effectively learned instead of being overwhelmed by easier binary classification signals.
-
-<div align="center">
-  <img src="./figures/dataset.png" alt="CoT Generation Pipeline" width="100%">
-  <br>
-  <em>Figure 2: The Self-Evolving Forensic CoT Generation pipeline and statistics for the resulting FSFR dataset.</em>
-</div>
-
 ---
 
-## 📊 Dataset: FSFR
+## 🛠️ Quick Start
 
-We present **FSFR (Full-Spectrum Forensic Reasoning)**, a comprehensive multimodal corpus designed for the complete SFT-RL pipeline.
+### 1. Environment Setup
 
-### Dataset Scale
+```bash
+conda create -n OmniVL-Guard python==3.10
+conda activate OmniVL-Guard
+pip install ms-swift==3.10.3
+pip install decord
+pip install vllm==0.11.0
+pip install deepspeed==0.17.6
+pip install qwen_vl_utils==0.0.14
+```
 
-- **~73K SFT samples** with Chain-of-Thought forensic reasoning.
-- **~110K RL samples** for balanced reinforcement learning.
+Download the pre-compiled flash-attention wheel from [Google Drive](https://drive.google.com/file/d/1b1Gxcwb3E7ft5vRyoJM60x5Di707_kvf/view?usp=sharing), then install it:
 
-### Modalities
+```bash
+pip install /path/to/flash_attn-*.whl
+```
 
-- **Text**
-- **Image**
-- **Video**
+### 2. Choose Your Path
 
-### Tasks
-
-- **Binary Forgery Classification**
-- **Tampering Localization**
-  - Spatial localization for images
-  - Semantic localization for text
-  - Temporal localization for videos
-
-> The download link and usage instructions for FSFR will be released soon.
-
----
-
-## 📈 Performance
-
-OmniVL-Guard significantly outperforms existing state-of-the-art MLLMs and domain-specific forensic methods.
-
-Notably, it achieves substantial gains in challenging localization tasks.
-
-| Method | Binary Cls. | Image Loc. (IoU) | Text Loc. (F1) | Video Loc. (tIoU) |
-| :--- | :---: | :---: | :---: | :---: |
-| **OmniVL-Guard (Ours)** | **96.20%** | **54.26%** | **63.78%** | **59.22%** |
-| Improvement vs Best | +6.97% | +5.73% | +22.92% | +37.79% |
-
-Please refer to our paper for full comparison tables and detailed experimental analysis.
-
----
-
-## 🚀 Release Plan
-
-- [ ] **OmniVL-Guard-8B**  
-  Flagship unified vision-language forensic model.
-
-- [ ] **OmniVL-Guard-3B**  
-  Lightweight and efficient forensic model.
-
-- [ ] **FSFR Dataset**  
-  Full-Spectrum Forensic Reasoning dataset.
-
-- [ ] **Full Code Base**  
-  Complete training and evaluation pipeline from scratch.
-
-- [ ] **Fine-Tuning Recipes**  
-  Recipes for adapting OmniVL-Guard-8B / OmniVL-Guard-2B to other datasets.
-
-- [ ] **Additional Fine-Tuned Checkpoints**  
-  OmniVL-Guard variants fine-tuned on external forensic datasets.
-
----
-
-## 🛠️ Usage
-
-The full source code, model checkpoints, dataset, and training instructions are being prepared for release.
-
-Once released, this repository will include:
-
-- Environment setup instructions
-- Data preparation scripts
-- SFT training pipeline
-- RL training pipeline with ARSPO
-- Evaluation scripts for classification and localization
-- Fine-tuning examples for new forensic datasets
-- Model checkpoints for OmniVL-Guard-8B and OmniVL-Guard-3B
+| Use Case | Guide |
+| :--- | :--- |
+| 🔧 **Fine-tune on OmniVL-Guard 2B/8B** | [Fine-tuning Guide](./code/fune_tuning/README.md) |
+| 🚀 **Run Inference** | [Inference Guide](./code/Inference/README.md) |
+| 🏗️ **Train from Scratch** | [Full Training Guide](./code/strench_train/README.md) |
 
 ---
 
@@ -178,9 +81,10 @@ Once released, this repository will include:
 If you find this work helpful, please consider citing our paper:
 
 ```bibtex
-@article{shen2026omnivl,
+@inproceedings{shen2026omnivl,
   title={OmniVL-Guard: Towards Unified Vision-Language Forgery Detection and Grounding via Balanced RL},
   author={Shen, Jinjie and Wu, Jing and Wang, Yaxiong and Cheng, Lechao and Tang, Shengeng and Hui, Tianrui and Pu, Nan and Zhong, Zhun},
-  journal={arXiv preprint arXiv:2602.10687},
+  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},
   year={2026}
 }
+```

@@ -1,0 +1,35 @@
+# =============================================
+# Downstream SFT Fine-tuning Config
+# =============================================
+# NOTE: Default parameters below are tuned for 8xH200 GPUs training a 2B model.
+# Please adjust batch_size, learning_rate, and related parameters based on your hardware.
+
+# Model (your trained OmniVL-Guard checkpoint)
+model_path: "output/rl_full/MMDD_HH/checkpoint-XXXX"   # TODO: set your checkpoint
+output_dir: "output/finetune_sft"
+
+# Dataset
+dataset: "Datasets/Downstream-SFT.jsonl"
+max_length: 6000
+
+# DeepSpeed stage: 2 or 3. Use 3 when GPU memory is limited.
+deepspeed_stage: 2
+
+# Training args
+training_args:
+  learning_rate: 5.0e-6
+  per_device_train_batch_size: 4
+  gradient_checkpointing: true
+  save_steps: 500
+  gradient_accumulation_steps: 3
+  num_train_epochs: 3
+  save_total_limit: 5
+
+# LoRA config
+lora_rank: 64
+lora_alpha: 128
+
+# Freeze strategy
+freeze_llm: false
+freeze_vit: true
+freeze_aligner: false

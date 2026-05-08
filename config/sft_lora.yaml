@@ -1,0 +1,35 @@
+# =============================================
+# LoRA SFT Training Config
+# =============================================
+# NOTE: Default parameters below are tuned for 8xH200 GPUs training a 2B model.
+# Please adjust batch_size, learning_rate, and related parameters based on your hardware.
+
+# Model
+model_path: "Qwen/Qwen3-VL-2B-Instruct"   # model_id or local path
+output_dir: "output/sft"
+
+# Dataset
+dataset: "Datasets/Refined-SFT.jsonl"
+max_length: 30480
+
+# DeepSpeed stage: 2 or 3. Use 3 when GPU memory is limited.
+deepspeed_stage: 2
+
+# Training args (only the specified subset)
+training_args:
+  learning_rate: 2.5e-4
+  per_device_train_batch_size: 2
+  gradient_checkpointing: true
+  save_steps: 1000
+  gradient_accumulation_steps: 7
+  num_train_epochs: 3
+  save_total_limit: 8
+
+# LoRA config
+lora_rank: 16
+lora_alpha: 32
+
+# Freeze strategy
+freeze_llm: false
+freeze_vit: true
+freeze_aligner: false
