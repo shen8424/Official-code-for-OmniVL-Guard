@@ -5,9 +5,9 @@
 <a href="https://arxiv.org/abs/2602.10687"><img src="https://img.shields.io/badge/Paper-arXiv:2602.10687-b31b1b.svg" alt="arXiv"></a>
 <a href="#"><img src="https://img.shields.io/badge/Conference-ICML%202026-4b8bbe.svg" alt="ICML 2026"></a>
 <a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
-<a href="#"><img src="https://img.shields.io/badge/Status-Accepted-brightgreen.svg" alt="Status"></a>
 <a href="https://huggingface.co/datasets/SJJ0854/FSFR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-FSFR-ff9900.svg" alt="HF Dataset"></a>
-<a href="https://huggingface.co/SJJ0854/OmniVL-Guard-2B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-OmniVL--Guard--2B-ff9900.svg" alt="HF Model"></a>
+<a href="https://huggingface.co/SJJ0854/OmniVL-Guard-2B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-OmniVL--Guard--2B-ff9900.svg" alt="HF Model 2B"></a>
+<a href="https://huggingface.co/SJJ0854/OmniVL-Guard-8B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-OmniVL--Guard--8B-ff9900.svg" alt="HF Model 8B"></a>
 
 </div>
 
@@ -16,13 +16,24 @@
 ## 🎉 News
 
 - [x] **[2026.04.30]** OmniVL-Guard has been accepted to **ICML 2026**!
-- [ ] Release **OmniVL-Guard-8B**, our flagship unified vision-language forensic model.
+- [x] **[2026.05.19]** Release **OmniVL-Guard-8B**, our flagship unified vision-language forensic model.
 - [x] **[2026.05.08]** Release **OmniVL-Guard-2B**, a lightweight and efficient version for broader deployment.
 - [x] **[2026.05.08]** Release **FSFR (Full-Spectrum Forensic Reasoning)**, a large-scale multimodal forensic reasoning dataset.
 - [x] **[2026.05.08]** Open-source the complete **OmniVL-Guard code base**, including the full training pipeline from scratch.
 - [x] **[2026.05.08]** Provide fine-tuning recipes and checkpoints for adapting **OmniVL-Guard-8B / OmniVL-Guard-2B** to additional forensic datasets.
 
-Please **Star** ⭐ this repository to stay updated!
+If you find this work helpful, please **Star** ⭐ this repository!
+
+---
+
+## 🔮 Further Reading: OmniVL-Guard Pro
+
+<p align="center">
+  <a href="http://arxiv.org/abs/2605.16962"><img src="https://img.shields.io/badge/Paper-arXiv:2605.16962-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://github.com/shen8424/OmniVL-Guard-Pro"><img src="https://img.shields.io/badge/GitHub-OmniVL--Guard--Pro-181717.svg?logo=github" alt="GitHub"></a>
+</p>
+
+> **OmniVL-Guard Pro** advances OmniVL-Guard from a closed-world forensic model into an **open-world tool-augmented agent** that dynamically retrieves real-time event clues and invokes specialized perception tools (cropping, zooming, edge screening, face detection, SAM3 segmentation) for fine-grained forgery analysis. It introduces **Checker-Guided Agentic RL (CGARL)** to deliver process-level supervision, effectively penalizing cases where the answer is right but the reasoning is distorted — achieving state-of-the-art performance with strong zero-shot generalization.
 
 ---
 
