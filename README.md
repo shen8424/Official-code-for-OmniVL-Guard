@@ -4,7 +4,6 @@
 
 <a href="https://arxiv.org/abs/2602.10687"><img src="https://img.shields.io/badge/Paper-arXiv:2602.10687-b31b1b.svg" alt="arXiv"></a>
 <a href="#"><img src="https://img.shields.io/badge/Conference-ICML%202026-4b8bbe.svg" alt="ICML 2026"></a>
-<a href="#"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a>
 <a href="https://huggingface.co/datasets/SJJ0854/FSFR"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Dataset-FSFR-ff9900.svg" alt="HF Dataset"></a>
 <a href="https://huggingface.co/SJJ0854/OmniVL-Guard-2B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-OmniVL--Guard--2B-ff9900.svg" alt="HF Model 2B"></a>
 <a href="https://huggingface.co/SJJ0854/OmniVL-Guard-8B"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Model-OmniVL--Guard--8B-ff9900.svg" alt="HF Model 8B"></a>
